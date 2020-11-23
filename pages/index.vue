@@ -1,89 +1,85 @@
-<template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
-</template>
-
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
+  data() {
+    return {}
+  },
+  async asyncData({ $content, params }) {
+    const landing = await $content('pages/landing').fetch()
+
+    return { landing }
+  },
+  head() {
+    return {
+      title: this.landing.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.landing.description,
+        },
+        // Open Graph
+        { hid: 'og:title', property: 'og:title', content: this.landing.title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.landing.description,
+        },
+        // Twitter Card
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.landing.title,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.landing.description,
+        },
+      ],
+    }
+  },
 }
 </script>
+
+<template lang="pug">
+v-carousel(
+  height='100vh',
+  show-arrows-on-hover,
+  hide-delimiter-background,
+  cycle
+)
+  v-carousel-item(v-for='(i, index) in landing.section', :key='index', eager)
+    v-sheet(color='blue-grey', height='100%')
+      v-row.text-center.text-md-left(
+        justify='center',
+        align='center',
+        style='height: 100%',
+        dense
+      )
+        v-col.pl-md-9.pa-5(cols=12, md=6)
+          p.title {{ landing.section[index].content.title }}
+          p.caption.text-md-justify {{ landing.section[index].content.caption }}
+          v-btn.font-weight-bold.text-wrap(
+            v-if='landing.section[index].content.button.eurl',
+            :href='landing.section[index].content.button.eurl',
+            target='_blank',
+            color='primary'
+          ) {{ landing.section[index].content.button.name }}
+          v-btn.font-weight-bold.text--white(
+            v-if='landing.section[index].content.button.iurl',
+            :to='{ name: landing.section[index].content.button.iurl }',
+            color='primary'
+          ) {{ landing.section[index].content.button.name }}
+        v-col.pa-5(cols=12, md=6, order='first', order-md='last')
+          v-img.mx-auto(
+            :src='landing.section[index].content.image',
+            max-width='650',
+            max-height=''
+          )
+</template>
+
+
+<style lang="sass" scoped>
+a
+  text-decoration: none
+</style>

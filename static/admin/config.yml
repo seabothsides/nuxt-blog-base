@@ -1,0 +1,166 @@
+backend:
+  name: git-gateway
+  branch: master
+
+publish_mode: editorial_workflow
+
+media_folder: static/uploads
+public_folder: /uploads
+
+media_library:
+  name: cloudinary
+  output_filename_only: true
+  config:
+    cloud_name: seabothsides
+    api_key: 523568347738799
+
+collections:
+  - label: 'Options'
+    name: 'options'
+    format: 'frontmatter'
+    editor:
+      preview: false
+    files:
+      - label: 'Options list'
+        name: 'options'
+        file: 'content/options.md'
+        fields:
+          - label: Categories
+            name: categories
+            widget: object
+            fields:
+              - { label: 'Blog category', name: 'blog', widget: 'list' }
+          - label: Tags
+            name: tags
+            widget: object
+            fields:
+              - { label: 'Blog tags', name: 'blog', widget: 'list' }
+          - label: Series
+            name: series
+            widget: object
+            fields:
+              - { label: 'Blog series', name: 'blog', widget: 'list' }
+
+  - label: Pages
+    name: pages
+    format: frontmatter
+    editor:
+      preview: false
+    files:
+      - label: Landing page
+        name: landing
+        file: content/pages/landing.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: string }
+          - label: Section
+            name: section
+            widget: list
+            fields:
+              - label: Content
+                name: content
+                widget: object
+                fields:
+                  - { label: Feature image, name: image, widget: image }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Content, name: caption, widget: string }
+                  - label: Button
+                    name: button
+                    widget: object
+                    fields:
+                      - { label: Button content, name: name, widget: string }
+                      - {
+                          label: External-URL,
+                          name: eurl,
+                          widget: string,
+                          required: false,
+                        }
+                      - {
+                          label: internal-URL,
+                          name: iurl,
+                          widget: string,
+                          required: false,
+                        }
+      - label: 'Authors list'
+        name: 'authors'
+        file: 'content/pages/authors.md'
+        fields:
+          - label: Authors
+            name: authors
+            widget: list
+            fields:
+              - label: Author
+                name: author
+                widget: object
+                fields:
+                  - { label: 'Author name', name: 'name', widget: 'string' }
+                  - {
+                      label: Author img,
+                      name: img,
+                      widget: image,
+                      default: https://res.cloudinary.com/seabothsides/image/upload/v1606141757/author-img-ric_p0qd1b.png,
+                    }
+                  - { label: Author bio, name: bio, widget: string }
+                  - {
+                      label: Author about,
+                      name: about,
+                      widget: markdown,
+                      required: false,
+                    }
+
+  - label: 'Blog post'
+    name: 'blog'
+    format: 'frontmatter'
+    folder: 'content/blog'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: Thumbnail, name: thumbnail, widget: image, required: false }
+      - label: Author
+        name: author
+        widget: object
+        fields:
+          - {
+              label: Name,
+              name: name,
+              widget: string,
+              default: Ricardo Calcina,
+            }
+          - {
+              label: Image,
+              name: img,
+              widget: image,
+              default: https://res.cloudinary.com/seabothsides/image/upload/v1606141757/author-img-ric_p0qd1b.png,
+            }
+      - label: 'Categories'
+        name: 'categories'
+        widget: 'relation'
+        collection: 'options'
+        file: 'options'
+        required: false
+        value_field: 'categories.blog.*'
+        search_fields: ['categories.blog.*']
+        multiple: true
+      - label: 'Tags'
+        name: 'tags'
+        widget: 'relation'
+        collection: 'options'
+        file: 'options'
+        required: false
+        value_field: 'tags.blog.*'
+        search_fields: ['tags.blog.*']
+        multiple: true
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - label: 'author test'
+        name: 'author-test'
+        widget: 'relation'
+        collection: 'pages'
+        file: 'authors'
+        search_fields: ['authors.*.author.name']
+        display_fields: ['authors.*.author.name']
+        value_field: 'authors.*.author.img'
