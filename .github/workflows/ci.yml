@@ -44,5 +44,5 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-      - name: Run linter 👀
+      - name: Run ESLint 👀
         run: eslint
