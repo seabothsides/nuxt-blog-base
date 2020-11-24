@@ -118,24 +118,8 @@ collections:
       preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: Thumbnail, name: thumbnail, widget: image, required: false }
-      - label: Author
-        name: author
-        widget: object
-        fields:
-          - {
-              label: Name,
-              name: name,
-              widget: string,
-              default: Ricardo Calcina,
-            }
-          - {
-              label: Image,
-              name: img,
-              widget: image,
-              default: https://res.cloudinary.com/seabothsides/image/upload/v1606141757/author-img-ric_p0qd1b.png,
-            }
       - label: 'Categories'
         name: 'categories'
         widget: 'relation'
@@ -154,13 +138,21 @@ collections:
         value_field: 'tags.blog.*'
         search_fields: ['tags.blog.*']
         multiple: true
-      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: Thumbnail, name: thumbnail, widget: image, required: false }
+      - label: Author
+        name: author
+        widget: object
+        fields:
+          - {
+              label: Name,
+              name: name,
+              widget: string,
+              default: Ricardo Calcina,
+            }
+          - {
+              label: Image,
+              name: img,
+              widget: image,
+              default: https://res.cloudinary.com/seabothsides/image/upload/v1606141757/author-img-ric_p0qd1b.png,
+            }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - label: 'author test'
-        name: 'author-test'
-        widget: 'relation'
-        collection: 'pages'
-        file: 'authors'
-        search_fields: ['authors.*.author.name']
-        display_fields: ['authors.*.author.name']
-        value_field: 'authors.*.author.img'
