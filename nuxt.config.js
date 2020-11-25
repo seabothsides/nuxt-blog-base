@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import getRoutes from "./utils/getRoutes"
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -47,7 +48,13 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/sitemap'
   ],
+
+  // Config env variables
+  publicRuntimeConfig: {
+    baseURL: 'http://localhost:3000/' || 'https://www.nuxtblogbase.com/'
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
@@ -55,6 +62,15 @@ export default {
       prism: {
         theme: 'prism-themes/themes/prism-coldark-dark.css'
       }
+    }
+  },
+
+  // Sitemap settings https://redfern.dev/articles/adding-a-sitemap-using-nuxt-content/
+  sitemap: {
+    hostname: this.baseURL,
+    routes() {
+      if (process.env.NODE_ENV !== 'development') return
+      return getRoutes();
     }
   },
 
@@ -83,4 +99,5 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}
+
 }
