@@ -12,6 +12,7 @@ v-container
 
 <script>
 export default {
+  layout: 'blog',
   async asyncData({ $content }) {
     const articles = await $content('blog').sortBy('createdAt', 'desc').fetch()
 

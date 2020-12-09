@@ -42,6 +42,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -67,9 +68,9 @@ export default {
 
   // Sitemap settings https://redfern.dev/articles/adding-a-sitemap-using-nuxt-content/
   sitemap: {
-    hostname: this.baseURL,
+    hostname: 'https://www.nuxtblogbase.com/',
     routes() {
-      if (process.env.NODE_ENV !== 'development') return
+      if (process.env.NODE_ENV !== 'production') return
       return getRoutes();
     }
   },

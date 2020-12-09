@@ -17,7 +17,7 @@ v-app
           v-list-item-title.pl-3 Blog Nav
           v-divider
           v-btn(text, :to='{ name: "blog" }', exact) Articles
-  v-main.overflow-hidden 
+  v-main.overflow-hidden.overflow-y-auto(max-height='90vh') 
     nuxt
 </template>
 

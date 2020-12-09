@@ -1,5 +1,5 @@
 ---
-title: Sea Both Sides
+title: nuxt-blog-base
 description: This page offers links to my most updated and useful content for the Sea Both Sides website
 section:
   - content:
