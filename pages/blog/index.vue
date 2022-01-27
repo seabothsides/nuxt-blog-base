@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div>
-      <div>
-        <div v-for="(articles, index) in articles" :key="index">
-          <nuxt-link
-            :to="{ name: 'blog-slug', params: { slug: articles.slug } }"
-          >
-            {{ articles.title }}
-          </nuxt-link>
-          <p>
-            {{ articles.description }}
-          </p>
-        </div>
-      </div>
+  <div class="grid grid-auto-row gap-3">
+    <div
+      v-for="(articles, index) in articles"
+      :key="index"
+      class="p-2 border rounded-lg border-4 border-gray-400"
+    >
+      <nuxt-link
+        :to="{ name: 'blog-slug', params: { slug: articles.slug } }"
+        class="font-semibold hover:underline"
+      >
+        {{ articles.title }}
+      </nuxt-link>
+      <p class="font-light">
+        {{ articles.description }}
+      </p>
     </div>
   </div>
 </template>

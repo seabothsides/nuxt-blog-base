@@ -42,11 +42,11 @@ export default {
 </script>
 
 <template>
-  <div class="px-8 grid gap-6 place-content-center md:px-44 h-full">
+  <div class="px-8 pb-10 pt-4 grid gap-8 place-content-center md:px-44 h-full">
     <div
       v-for="(i, index) in landing.section"
       :key="index"
-      class="p-2 grid grid-flow-rows gap-4"
+      class="p-2 grid grid-flow-rows gap-4 rounded-2xl border-2 shadow-xl"
     >
       <p class="font-bold text-xl">
         {{ landing.section[index].content.title }}
@@ -102,7 +102,7 @@ export default {
         {{ landing.section[index].content.button.name }}
       </a>
       <img
-        class="rounded-3xl order-first"
+        class="rounded-3xl order-first shadow-lg"
         :src="landing.section[index].content.image"
         alt=""
       />
