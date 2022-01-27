@@ -42,9 +42,13 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div v-for="(i, index) in landing.section" :key="index">
-      <p>
+  <div class="px-8 grid gap-6 place-content-center md:px-44 h-full">
+    <div
+      v-for="(i, index) in landing.section"
+      :key="index"
+      class="p-2 grid grid-flow-rows gap-4"
+    >
+      <p class="font-bold text-xl">
         {{ landing.section[index].content.title }}
       </p>
       <p>
@@ -53,6 +57,23 @@ export default {
       <nuxt-link
         v-if="landing.section[index].content.button.iurl"
         :to="{ name: landing.section[index].content.button.iurl }"
+        class="
+          place-self-center
+          border border-4
+          rounded-md
+          p-1.5
+          border-green-400
+          capitalize
+          transition
+          duration-200
+          ease-out
+          hover:ease-in
+          hover:bg-gradient-to-r
+          hover:text-white
+          hover:font-bold
+          hover:from-green-300
+          hover:to-blue-400
+        "
       >
         {{ landing.section[index].content.button.name }}
       </nuxt-link>
@@ -60,10 +81,31 @@ export default {
         v-if="landing.section[index].content.button.eurl"
         :href="landing.section[index].content.button.eurl"
         target="_blank"
+        class="
+          place-self-center
+          border border-4
+          rounded-md
+          p-1.5
+          border-green-400
+          capitalize
+          transition
+          duration-200
+          ease-out
+          hover:ease-in
+          hover:bg-gradient-to-r
+          hover:text-white
+          hover:font-bold
+          hover:from-green-300
+          hover:to-blue-400
+        "
       >
         {{ landing.section[index].content.button.name }}
       </a>
-      <img :src="landing.section[index].content.image" alt="" />
+      <img
+        class="rounded-3xl order-first"
+        :src="landing.section[index].content.image"
+        alt=""
+      />
     </div>
   </div>
 </template>
