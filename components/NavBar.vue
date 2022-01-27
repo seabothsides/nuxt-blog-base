@@ -1,8 +1,10 @@
 <template>
   <nav class="bg-gray-200 md:px-56 md:py-1.5 md:grid grid-cols-2 items-center">
-    <nuxt-link class="font-bold text-3xl hover:text-yellow-400" to="/"
-      >Brand Logo</nuxt-link
-    >
+    <p>
+      <nuxt-link class="font-bold text-3xl hover:text-green-500" to="/">
+        Brand Logo
+      </nuxt-link>
+    </p>
     <div class="md:flex md:justify-between capitalize">
       <nuxt-link
         class="
@@ -11,7 +13,7 @@
           duration-200
           text-lg
           font-semibold
-          hover:text-yellow-400 hover:underline
+          hover:text-red-400
         "
         v-for="link in links"
         :to="{ name: link.link }"
