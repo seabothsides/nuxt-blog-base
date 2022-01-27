@@ -47,8 +47,12 @@ export default {
 
 <template>
   <div>
-    <ul>
-      <li v-for="link of article.toc" :key="link.id">
+    <ul class="border-2 p-2 rounded-md shadow-inner shadow-lg">
+      <li
+        v-for="link of article.toc"
+        :key="link.id"
+        class="font-semibold hover:underline"
+      >
         <a :href="`#${link.id}`">
           {{ link.text }}
         </a>
@@ -110,7 +114,7 @@ pre[class*='language-']::selection {
 }
 .v-application code {
   background-color: transparent;
-  color: #f5f7fa;
+  color: #3a74cc;
   font-size: 0.95em;
 }
 
@@ -128,6 +132,11 @@ pre[class*='language-']::selection {
 .nuxt-content pre {
   position: static;
   background-color: #2f495e;
+}
+
+.nuxt-content h2 {
+  font-weight: 700;
+  font-size: 1.35em;
 }
 
 a {

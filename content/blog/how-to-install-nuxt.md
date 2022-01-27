@@ -9,6 +9,8 @@ author:
 
 Nuxt JS is a framework built on Vue JS, this is one of the easiest frameworks to use in 2020 to make websites from scratch and to have complete control over style and functions. All for free, for the most part.
 
+<br/>
+
 Nuxt JS is included with yarn and npm or can be added as a dependancy to a package.json file in an existing web application
 
 ## Prerequisites
