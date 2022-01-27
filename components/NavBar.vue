@@ -1,11 +1,13 @@
 <template>
-  <nav class="bg-gray-200 md:px-56 md:py-1.5 md:grid grid-cols-2 items-center">
+  <nav
+    class="px-3 bg-gray-200 md:px-56 md:py-1.5 grid grid-flow-col items-center"
+  >
     <p>
       <nuxt-link class="font-bold text-3xl hover:text-green-500" to="/">
         Brand Logo
       </nuxt-link>
     </p>
-    <div class="md:flex md:justify-between capitalize">
+    <div class="flex justify-around capitalize">
       <nuxt-link
         class="
           transition
