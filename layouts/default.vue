@@ -1,7 +1,7 @@
-<template lang="pug">
-v-app
-  v-main 
-    nuxt
+<template>
+  <div>
+    <nuxt />
+  </div>
 </template>
 
 <script>

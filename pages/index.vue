@@ -50,13 +50,12 @@ export default {
       <p>
         {{ landing.section[index].content.caption }}
       </p>
-      <a
+      <nuxt-link
         v-if="landing.section[index].content.button.eurl"
-        :href="landing.section[index].content.button.eurl"
-        target="_blank"
+        :to="{ name: landing.section[index].content.button.eurl }"
       >
         {{ landing.section[index].content.button.name }}
-      </a>
+      </nuxt-link>
       <a
         v-if="landing.section[index].content.button.iurl"
         :href="landing.section[index].content.button.iurl"
