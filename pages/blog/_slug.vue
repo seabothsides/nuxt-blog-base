@@ -45,28 +45,32 @@ export default {
 }
 </script>
 
-<template lang="pug">
-v-container
-  v-navigation-drawer(right, clipped, app)
-    ul
-      p.text-center.overline.mb-n1 Table Of Contents
-      li(v-for="link of article.toc" :key="link.id" :class="{ 'text-wrap pb-1 v-list-item__title': link.depth === 2, 'pl-5 pb-1 v-list-item__subtitle': link.depth === 3 }")
-        a(:href="`#${link.id}`") {{ link.text }}
-  v-container
-    h1.text-h4.text-capitalize {{ article.title }}
-    div.text-overline.ml-1.text--secondary Article last updated: {{ formatDate(article.updatedAt) }}
-    div.text-subtitle-1 {{ article.description }}
-    v-card.pa-1.align-center.mb-1(flat)
-      v-avatar.mr-2 
-        img( :src="article.author.img" )
-      p.d-inline.subtitle-2.text--secondary Author: {{ article.author.name }}
-    v-divider
-    ul.hidden-md-and-up.mb-2.pl-2
-      p.text--secondary.mb-n1.overline Table Of Contents
-      li.mb-1(v-for="link of article.toc" :key="link.id" :class="{ 'text-wrap v-list-item__title': link.depth === 2, 'pl-5 v-list-item__subtitle': link.depth === 3 }")
-        a(:href="`#${link.id}`") {{ link.text }}
-    v-divider.mb-2
-    nuxt-content(:document="article") /
+<template>
+  <div>
+    <ul>
+      <li v-for="link of article.toc" :key="link.id">
+        <a :href="`#${link.id}`">
+          {{ link.text }}
+        </a>
+      </li>
+    </ul>
+    <div>
+      <h2>
+        {{ article.title }}
+      </h2>
+      <p>
+        {{ formatDate(article.updatedAt) }}
+      </p>
+      <p>
+        {{ article.description }}
+      </p>
+      <img :src="article.author.img" alt="" />
+      <p>
+        {{ article.author.name }}
+      </p>
+      <nuxt-content :document="article" />
+    </div>
+  </div>
 </template>
 
 <style>
