@@ -46,7 +46,7 @@ export default {
     <div
       v-for="(i, index) in landing.section"
       :key="index"
-      class="p-2 grid grid-flow-rows gap-4 rounded-2xl border-2 shadow-xl"
+      class="p-2 grid grid-flow-row gap-4 rounded-2xl border-2 shadow-xl"
     >
       <p class="font-bold text-xl">
         {{ landing.section[index].content.title }}

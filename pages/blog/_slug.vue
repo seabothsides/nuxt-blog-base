@@ -54,20 +54,22 @@ export default {
         </a>
       </li>
     </ul>
-    <div>
-      <h2>
+    <div class="py-4">
+      <h2 class="font-bold text-2xl">
         {{ article.title }}
       </h2>
-      <p>
+      <p class="font-light italic">
         {{ formatDate(article.updatedAt) }}
       </p>
-      <p>
+      <p class="font-light">
         {{ article.description }}
       </p>
-      <img :src="article.author.img" alt="" />
-      <p>
-        {{ article.author.name }}
-      </p>
+      <div class="flex pb-3 items-center space-x-4">
+        <img class="w-9" :src="article.author.img" alt="" />
+        <p>
+          {{ article.author.name }}
+        </p>
+      </div>
       <nuxt-content :document="article" />
     </div>
   </div>
